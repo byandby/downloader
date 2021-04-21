@@ -1,0 +1,6 @@
+{
+  "files.autoSave": "off",
+  "editor.formatOnSave": true,
+  "javascript.format.enable": true,
+  "editor.tabSize": 2
+}
