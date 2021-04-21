@@ -1,6 +1,10 @@
 import { get, wait } from './tools.js'
 import cheerio from 'cheerio'
 
+let proxy = 'http://web-proxy.austin.hp.com:8080'
+
+export const setProxy = (p) => (proxy = p)
+
 export const getWordList = async (url) => {
   const result = []
   try {
@@ -8,7 +12,7 @@ export const getWordList = async (url) => {
     const content = await get({
       headers: {},
       url,
-      proxy: 'http://web-proxy.austin.hp.com:8080',
+      proxy,
       rejectUnauthorized: false,
     })
     const $ = cheerio.load(content)
@@ -26,7 +30,7 @@ export const getSynos = async (word) => {
   const content = await get({
     headers: {},
     url: `http://m.youdao.com/singledict?q=${word}&dict=syno&le=eng&more=false`,
-    proxy: 'http://web-proxy.austin.hp.com:8080',
+    proxy,
     rejectUnauthorized: false,
   })
   const $ = cheerio.load(content)
@@ -60,7 +64,7 @@ export const getWordInfo = async (word) => {
   const content = await get({
     headers: {},
     url: `http://m.youdao.com/dict?le=eng&q=${word}`,
-    proxy: 'http://web-proxy.austin.hp.com:8080',
+    proxy,
     rejectUnauthorized: false,
   })
   const $ = cheerio.load(content)
